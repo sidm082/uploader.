@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 # Admin credentials from environment variables
 ADMIN_USERNAME = os.getenv('ADMIN_USERNAME', 'admin')
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin123')
-
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 # Database setup
 def get_db_connection():
     """Create and return a database connection."""
