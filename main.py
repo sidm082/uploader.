@@ -8,7 +8,6 @@ import re
 from functools import wraps
 import uuid
 
-
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -16,7 +15,7 @@ logger = logging.getLogger(__name__)
 # Admin credentials from environment variables
 ADMIN_USERNAME = os.getenv('ADMIN_USERNAME', 'admin')
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin123')
-BOT_TOKEN = os.getenv('BOT_TOKEN')
+
 # Database setup
 def get_db_connection():
     """Create and return a database connection."""
@@ -260,7 +259,7 @@ async def select_menu_for_file(update, context):
     await query.message.reply_text("لطفاً فایل (سند، ویدئو، تصویر، صدا یا گیف) را آپلود کنید:")
     return ADD_FILE
 
-async def save_file=_file(update, context):
+async def save_file(update, context):
     """Save uploaded file to the database."""
     menu_id = context.user_data['upload_menu_id']
     file = None
@@ -598,7 +597,7 @@ def main():
                 MessageHandler(filters.TEXT & ~filters.COMMAND, save_edited_channel)
             ],
             DELETE_CHANNEL: [CallbackQueryHandler(confirm_delete_channel, pattern='delete_channel_')]
-        },
+        ],
         fallbacks=[CommandHandler('cancel', cancel)]
     )
     
